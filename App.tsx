@@ -1,87 +1,101 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
+<script src="http://localhost:8097" />;
+import React, {useState} from 'react';
+import {StyleSheet, Text, View, Button} from 'react-native';
 
-import React from 'react';
-import type {PropsWithChildren} from 'react';
-import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+function App(): JSX.Element {
+  const [result, setResult] = useState(0);
+  function test() {
+    let num = 123;
+    setResult(num);
+  }
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
-
-function Section({children, title}: SectionProps): JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
   return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
+    <View style={styles.container}>
+      <View style={styles.input}>
+        <Text style={styles.inputText}>11*111</Text>
+      </View>
+      <View style={styles.calculation}>
+        <Text style={styles.resultText}>{result}</Text>
+      </View>
+      <View style={styles.buttons}>
+        <View style={styles.numbers}>
+          <View style={styles.row}>
+            <Button title="0" />
+            <Button title="0" />
+            <Button title="0" />
+          </View>
+          <View style={styles.row}>
+            <Button title="0" />
+            <Button title="0" />
+            <Button title="0" />
+          </View>
+          <View style={styles.row}>
+            <Button title="0" />
+            <Button title="0" />
+            <Button title="0" />
+          </View>
+          <View style={styles.row}>
+            <Button title="0" />
+            <Button title="0" />
+            <Button title="0" />
+          </View>
+        </View>
+        <View style={styles.operations}>
+          <Button title="+" onPress={test} />
+          <Button title="+" />
+          <Button title="+" />
+          <Button title="+" />
+        </View>
+      </View>
     </View>
   );
 }
 
-function App(): JSX.Element {
-  return (
-    <SafeAreaView>
-      <StatusBar />
-      <ScrollView contentInsetAdjustmentBehavior="automatic">
-        <View>
-          <Section title="">
-            <Text style={styles.highlight}>
-              This is my first React Native App
-            </Text>
-          </Section>
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-}
-
 const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
+  container: {
+    flex: 1,
+    paddingTop: '12%',
   },
-  sectionTitle: {
+  row: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  input: {
+    flex: 2,
+    backgroundColor: 'red',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    paddingRight: 10,
+  },
+  inputText: {
+    fontSize: 32,
+    color: 'white',
+  },
+  calculation: {
+    flex: 1,
+    backgroundColor: 'green',
+    alignItems: 'flex-end',
+    justifyContent: 'center',
+    paddingRight: 10,
+  },
+  resultText: {
     fontSize: 24,
-    fontWeight: '600',
+    color: 'white',
   },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
+  buttons: {
+    flex: 7,
+    flexDirection: 'row',
   },
-  highlight: {
-    fontWeight: '700',
+  numbers: {
+    flex: 3,
+    backgroundColor: 'yellow',
+  },
+  operations: {
+    flex: 1,
+    justifyContent: 'space-around',
+    backgroundColor: 'grey',
   },
 });
 
